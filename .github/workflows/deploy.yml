@@ -29,3 +29,4 @@ jobs:
           update_about.sql
           website_ready.zip
           .system_generated/**
+          db.php

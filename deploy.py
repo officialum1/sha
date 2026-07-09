@@ -19,7 +19,7 @@ def ensure_dir(ftp, dirname):
 
 def upload_recursive(ftp, local_path):
     for item in os.listdir(local_path):
-        if item in ['.git', 'deploy.py', 'update_about.sql', '.system_generated', 'website_ready.zip']:
+        if item in ['.git', 'deploy.py', 'update_about.sql', '.system_generated', 'website_ready.zip', 'db.php']:
             continue
             
         local_item = os.path.join(local_path, item)
