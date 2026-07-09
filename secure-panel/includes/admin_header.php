@@ -1,6 +1,7 @@
 <?php
 // secure-panel/includes/admin_header.php
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/migrate.php';
 require_login();
 
 $current_page = basename($_SERVER['PHP_SELF']);
