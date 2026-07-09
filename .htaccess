@@ -1,0 +1,22 @@
+RewriteEngine On
+RewriteBase /
+
+# Prevent directory listing
+Options -Indexes
+
+# Route dynamic static pages
+RewriteRule ^about$ page.php?slug=about [QSA,L]
+RewriteRule ^terms$ page.php?slug=terms [QSA,L]
+RewriteRule ^privacy$ page.php?slug=privacy [QSA,L]
+
+# Route Products and Categories
+RewriteRule ^product/([a-zA-Z0-9-]+)$ product.php?slug=$1 [QSA,L]
+RewriteRule ^category/([a-zA-Z0-9-]+)$ products.php?category=$1 [QSA,L]
+
+# Remove .php extension for standard files (e.g. contact.php -> /contact)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Secure the includes directory (prevent direct access to auth.php or db.php)
+RewriteRule ^includes/(.*)$ index.php [R=301,L]
