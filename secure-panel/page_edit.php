@@ -25,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('SELECT * FROM pages WHERE id = ?');
         $stmt->execute([$id]);
         $page = $stmt->fetch();
+        
+        // Regenerate Static HTML automatically
+        require_once __DIR__ . '/includes/generator.php';
+        generate_static_html();
+        
     } catch (PDOException $e) {
         $error = "Database error: " . $e->getMessage();
     }

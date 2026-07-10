@@ -41,6 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('SELECT * FROM products WHERE id = ?');
         $stmt->execute([$id]);
         $product = $stmt->fetch();
+        
+        // Regenerate Static HTML automatically
+        require_once __DIR__ . '/includes/generator.php';
+        generate_static_html();
+        
     } catch (PDOException $e) {
         $error = "Database error: " . $e->getMessage();
     }
@@ -124,6 +129,9 @@ include __DIR__ . '/includes/admin_header.php';
         $pdo->prepare('INSERT INTO product_reviews (product_id, reviewer_name, rating, comment) VALUES (?, ?, ?, ?)')
             ->execute([$id, $r_name, $r_rating, $r_comment]);
         
+        require_once __DIR__ . '/includes/generator.php';
+        generate_static_html();
+        
         echo "<meta http-equiv='refresh' content='0'>";
         exit;
     }
@@ -132,6 +140,10 @@ include __DIR__ . '/includes/admin_header.php';
     if (isset($_GET['del_rev'])) {
         $del_id = (int)$_GET['del_rev'];
         $pdo->prepare('DELETE FROM product_reviews WHERE id = ?')->execute([$del_id]);
+        
+        require_once __DIR__ . '/includes/generator.php';
+        generate_static_html();
+        
         echo "<meta http-equiv='refresh' content='0;url=product_edit.php?id=$id'>";
         exit;
     }
