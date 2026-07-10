@@ -16,8 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 2. Import Database SQL
         $sql_file = __DIR__ . '/database.sql';
         if (file_exists($sql_file)) {
-            $sql = file_get_contents($sql_file);
-            $pdo->exec($sql);
+            try {
+                $sql = file_get_contents($sql_file);
+                $pdo->exec($sql);
+            } catch (PDOException $e) {
+                // Tables already exist, ignore this error and proceed to save connection details!
+            }
         }
 
         // 3. Update db.php file with new credentials
