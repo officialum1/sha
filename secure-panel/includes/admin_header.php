@@ -181,6 +181,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <h2>E. Rajpoot Admin</h2>
     <a href="index.php" <?php if($current_page == 'index.php') echo 'class="active"'; ?>>Dashboard</a>
     <a href="products.php" <?php if($current_page == 'products.php' || $current_page == 'product_edit.php') echo 'class="active"'; ?>>Products</a>
+    <a href="import.php" <?php if($current_page == 'import.php') echo 'class="active"'; ?>>⚡ Import Z2U</a>
     <a href="categories.php" <?php if($current_page == 'categories.php') echo 'class="active"'; ?>>Categories</a>
     <a href="pages.php" <?php if($current_page == 'pages.php' || $current_page == 'page_edit.php') echo 'class="active"'; ?>>Pages</a>
     <a href="messages.php" <?php if($current_page == 'messages.php') echo 'class="active"'; ?>>Messages</a>
